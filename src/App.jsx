@@ -413,7 +413,7 @@ const App = () => {
     Currently accepting commissions for short-term projects and bug fixes!
     </p>
     <p className="bg-red-100 border border-red-500 text-red-800 font-semibold text-lg mb-7 max-w-2xl mx-auto p-4 rounded-lg flex items-center justify-center gap-2 text-center">
-    <span>Payments accepted: <span className="text-red-600">only via <span className="text-green-600">Robux</span></span></span>
+    <span>Payments accepted: <span className="text-red-600">only via <span className="text-green-600">Robux</span>or <span className="text-green-600">Paypal</span></span></span>
     </p>
 
 
