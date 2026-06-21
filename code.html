@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Waxes | Roblox Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#d0bcff",
+                        "on-primary-container": "#340080",
+                        "primary-fixed-dim": "#d0bcff",
+                        "surface-bright": "#3b3742",
+                        "on-secondary-container": "#d6a9ff",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "on-background": "#e7e0ed",
+                        "tertiary-fixed": "#ffdcbb",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#23005c",
+                        "inverse-surface": "#e7e0ed",
+                        "outline": "#958ea0",
+                        "surface-variant": "#37333d",
+                        "inverse-primary": "#6d3bd7",
+                        "secondary": "#ddb7ff",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "surface": "#15121b",
+                        "secondary-container": "#6f00be",
+                        "primary-fixed": "#e9ddff",
+                        "on-primary-fixed-variant": "#5516be",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "surface-tint": "#d0bcff",
+                        "surface-container-highest": "#37333d",
+                        "tertiary-container": "#ca801e",
+                        "on-surface": "#e7e0ed",
+                        "primary-container": "#a078ff",
+                        "on-secondary-fixed": "#2c0051",
+                        "on-secondary": "#490080",
+                        "secondary-fixed": "#f0dbff",
+                        "tertiary": "#ffb869",
+                        "outline-variant": "#494454",
+                        "on-error": "#690005",
+                        "surface-dim": "#15121b",
+                        "on-surface-variant": "#cbc3d7",
+                        "on-tertiary-fixed": "#2c1700",
+                        "surface-container-lowest": "#0f0d15",
+                        "inverse-on-surface": "#322f39",
+                        "on-tertiary": "#482900",
+                        "tertiary-fixed-dim": "#ffb869",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "on-tertiary-container": "#3f2300",
+                        "surface-container-low": "#1d1a23",
+                        "on-primary": "#3c0091",
+                        "surface-container": "#211e27",
+                        "background": "#050505",
+                        "surface-container-high": "#2c2832"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap-mobile": "80px",
+                        "gutter": "24px",
+                        "container-max-width": "1280px",
+                        "section-gap-desktop": "160px",
+                        "base": "8px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #050505;
+            color: #e7e0ed;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-geist { font-family: 'Geist', sans-serif; }
+
+        .glass-card {
+            background: rgba(21, 18, 27, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: rgba(21, 18, 27, 0.8);
+            transform: translateY(-4px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glow-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .tech-chip {
+            font-family: 'Geist', monospace;
+            background: rgba(15, 13, 21, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            padding: 4px 12px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #cbc3d7;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #d0bcff;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -0.5rem;
+            width: 0.25rem;
+            height: 0.25rem;
+            border-radius: 9999px;
+            background: #d0bcff;
+            opacity: 0;
+            transform: translateX(-50%) scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-link.active::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .atomic-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .hero-animation-container {
+            position: relative;
+            background: #0f0d15;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        
+        .play-overlay {
+            background: rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .group:hover .play-overlay {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        #shader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.4;
+        }
+
+        .ambient-field {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.55;
+        }
+
+        .ambient-field::before {
+            content: '';
+            position: absolute;
+            inset: -25%;
+            background:
+                repeating-linear-gradient(118deg, transparent 0 92px, rgba(208, 188, 255, 0.08) 93px, transparent 95px),
+                repeating-linear-gradient(62deg, transparent 0 140px, rgba(255, 184, 105, 0.045) 141px, transparent 143px);
+            mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 72%);
+            animation: ambient-lines 16s linear infinite;
+        }
+
+        .ambient-field::after {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(208, 188, 255, 0.11) 18deg, transparent 42deg, transparent 125deg, rgba(139, 92, 246, 0.08) 152deg, transparent 190deg, transparent 360deg);
+            mask-image: radial-gradient(circle at 50% 50%, transparent 0%, #000 28%, transparent 68%);
+            animation: ambient-sweep 24s linear infinite;
+        }
+
+        .ambient-orbit {
+            position: absolute;
+            border: 1px solid rgba(208, 188, 255, 0.16);
+            border-radius: 9999px;
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.16), inset 0 0 40px rgba(139, 92, 246, 0.05);
+            animation: ambient-orbit 18s ease-in-out infinite alternate;
+        }
+
+        .ambient-orbit.one {
+            width: 42vmax;
+            height: 42vmax;
+            top: 8%;
+            right: -18vmax;
+        }
+
+        .ambient-orbit.two {
+            width: 30vmax;
+            height: 30vmax;
+            bottom: -14vmax;
+            left: -10vmax;
+            animation-duration: 23s;
+            animation-delay: -8s;
+        }
+
+        .ambient-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #d0bcff;
+            box-shadow: 0 0 24px #8b5cf6;
+            animation: ambient-dot 6s ease-in-out infinite;
+        }
+
+        .ambient-dot.one { top: 28%; left: 14%; }
+        .ambient-dot.two { top: 62%; right: 18%; animation-delay: -3s; }
+        .ambient-dot.three { bottom: 16%; left: 48%; animation-delay: -6s; }
+        .ambient-dot.four { top: 18%; right: 34%; animation-delay: -1.5s; }
+        .ambient-dot.five { bottom: 32%; left: 22%; animation-delay: -4.5s; }
+        .ambient-dot.six { top: 74%; right: 42%; animation-delay: -7.5s; }
+        .ambient-dot.seven { top: 42%; left: 62%; animation-delay: -2.5s; }
+        .ambient-dot.eight { top: 12%; left: 44%; animation-delay: -5.5s; }
+        .ambient-dot.nine { bottom: 10%; right: 26%; animation-delay: -8.5s; }
+        .ambient-dot.ten { top: 54%; left: 8%; animation-delay: -0.8s; }
+
+        @keyframes ambient-lines {
+            from { transform: translate3d(-7%, -4%, 0) rotate(0deg); }
+            to { transform: translate3d(7%, 4%, 0) rotate(2deg); }
+        }
+
+        @keyframes ambient-sweep {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.08); }
+        }
+
+        @keyframes ambient-orbit {
+            from { transform: rotate(0deg) scale(0.96); opacity: 0.45; }
+            to { transform: rotate(18deg) scale(1.04); opacity: 0.9; }
+        }
+
+        @keyframes ambient-dot {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.35; }
+            50% { transform: translate3d(36px, -42px, 0) scale(1.8); opacity: 0.95; }
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .project-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary/30 selection:text-white">
+<!-- WebGL Background Shaders -->
+<div id="shader-bg">
+<canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+</div>
+<div aria-hidden="true" class="ambient-field">
+<div class="ambient-orbit one"></div>
+<div class="ambient-orbit two"></div>
+<div class="ambient-dot one"></div>
+<div class="ambient-dot two"></div>
+<div class="ambient-dot three"></div>
+<div class="ambient-dot four"></div>
+<div class="ambient-dot five"></div>
+<div class="ambient-dot six"></div>
+<div class="ambient-dot seven"></div>
+<div class="ambient-dot eight"></div>
+<div class="ambient-dot nine"></div>
+<div class="ambient-dot ten"></div>
+</div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 py-6">
+<div class="max-w-container-max-width mx-auto px-gutter flex justify-between items-center bg-surface/70 backdrop-blur-xl rounded-full h-16 border border-primary/10 shadow-lg transition-all duration-300 mx-4 lg:mx-auto">
+<div class="flex items-center gap-2 pl-4">
+<span class="font-headline-lg text-2xl font-extrabold text-on-surface tracking-tighter font-geist">WAXES</span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-label-sm text-label-sm uppercase tracking-widest font-geist">
+<a class="nav-link active" data-nav-link href="#about">About Me</a>
+<a class="nav-link" data-nav-link href="#work">What I Do</a>
+<a class="nav-link" data-nav-link href="#showcases">Past Work</a>
+<a class="nav-link" data-nav-link href="#services">Skills</a>
+</div>
+<div class="pr-2">
+<button class="atomic-gradient text-white px-6 py-2.5 rounded-full font-label-sm text-label-sm uppercase tracking-widest font-bold hover:brightness-110 transition-all active:scale-95 shadow-[0_0_20px_rgba(139,92,246,0.3)] font-geist" data-scroll-target="contact" type="button">
+                Hire Me
+            </button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section (from SCREEN_12) -->
+<section class="min-h-screen flex items-center pt-32 pb-section-gap-desktop overflow-hidden">
+<div class="max-w-5xl mx-auto px-gutter">
+<div class="reveal">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
+<span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+<span class="text-primary font-label-sm text-xs uppercase tracking-widest font-geist font-semibold">Available for Roblox scripting commissions</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-[1.05] font-geist">
+                    Clean Roblox Code.<br/><span class="text-primary">Unrivaled Performance.</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-10 max-w-xl leading-relaxed">
+                    I can script pretty much anything Roblox-related, from gameplay systems and UI to data, tools, optimization, and full features. Combat systems are where I have the most experience, but I am comfortable handling the rest too.
+                </p>
+<div class="glass-card rounded-3xl p-6 md:p-8 mb-10 max-w-5xl border-primary/30" id="about">
+<div class="flex flex-col md:flex-row gap-6 items-start">
+<img alt="Waxes Discord avatar" class="w-full md:w-80 h-64 md:h-80 rounded-3xl object-cover border border-primary/20 shadow-[0_0_30px_rgba(139,92,246,0.25)]" src="https://cdn.discordapp.com/avatars/358532198531465219/a_324974e8464b98d07ad1ddbe4c96883d.gif?size=1024"/>
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
+<span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+<span class="text-primary font-label-sm text-[10px] uppercase tracking-widest font-geist font-semibold">About Waxes</span>
+</div>
+<h2 class="text-on-surface font-headline-lg text-2xl mb-3 font-geist">5+ Years Roblox Scripting</h2>
+<div class="space-y-3 text-on-surface-variant text-sm leading-relaxed mb-5">
+<p>Hello, I'm Waxes. I can handle pretty much anything Roblox coding or scripting related, from gameplay logic and UI to data, tools, optimization, and full project systems.</p>
+<p>Combat systems are where I have the most experience, but that does not mean I cannot build the rest. I avoid gun-focused and vehicle-heavy work because I do not enjoy working on those systems.</p>
+</div>
+<div class="flex gap-2 flex-wrap">
+<span class="tech-chip">Luau</span>
+<span class="tech-chip">Gameplay</span>
+<span class="tech-chip">Combat</span>
+<span class="tech-chip">Full Games</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12 max-w-md">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">verified</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wider font-geist">5+ Years Scripting</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">code_blocks</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wider font-geist">Modular Frameworks</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">memory</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wider font-geist">Gameplay Systems</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">database</span>
+<span class="font-label-sm text-[11px] uppercase tracking-wider font-geist">Server Verification</span>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="atomic-gradient text-white px-10 py-4 rounded-xl font-label-sm text-sm uppercase tracking-widest font-bold hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] transition-all font-geist" data-scroll-target="showcases" type="button">
+                        View Past Work
+                    </button>
+<button class="border border-outline-variant text-on-surface px-10 py-4 rounded-xl font-label-sm text-sm uppercase tracking-widest font-bold hover:bg-surface-variant transition-all font-geist" data-copy-discord type="button">
+                        Copy Discord
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Of Every Size (from SCREEN_8/12) -->
+<section class="py-section-gap-desktop bg-surface-container-lowest/30" id="work">
+<div class="max-w-container-max-width mx-auto px-gutter">
+<div class="text-center mb-20 reveal">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-4 font-geist">Projects Of Every Size</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto leading-relaxed">
+                    From quick bug fixes to full games, I can handle almost anything Roblox coding or scripting related while keeping the code reliable, scalable, and easy to maintain.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-3xl reveal delay-100 border-l-4 border-l-primary/30 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">bolt</span>
+<h3 class="font-headline-lg text-2xl text-on-surface mb-4 font-geist">Bug Fixes &amp; Optimization</h3>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                        Fast debugging, performance cleanup, error handling, and low-latency improvements for existing Roblox projects.
+                    </p>
+</div>
+<div class="glass-card p-10 rounded-3xl reveal delay-200 border-l-4 border-l-primary/60 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">inventory_2</span>
+<h3 class="font-headline-lg text-2xl text-on-surface mb-4 font-geist">Combat &amp; Ability Systems</h3>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                        My strongest area: server-authoritative combat, anime-inspired abilities, state machines, player mechanics, and visual-effect-heavy gameplay.
+                    </p>
+</div>
+<div class="glass-card p-10 rounded-3xl reveal delay-300 border-l-4 border-l-primary group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">architecture</span>
+<h3 class="font-headline-lg text-2xl text-on-surface mb-4 font-geist">General Roblox Scripting</h3>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                        Progression, crafting, viewports, analytics, movement, UI, integrations, full-game logic, and other Roblox systems your project needs.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Engineering Showcases (from SCREEN_10/12) -->
+<section class="py-section-gap-desktop" id="showcases">
+<div class="max-w-container-max-width mx-auto px-gutter">
+<div class="text-center mb-20 reveal">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-4 font-geist">Past Work Showcase</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">
+                    Click any project to watch the local video showcase or inspect the project image from the previous portfolio.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="showcase-grid">
+</div>
+</div>
+</section>
+<!-- Professional Expertise (from SCREEN_12) -->
+<section class="py-section-gap-desktop bg-surface-container-low/20" id="services">
+<div class="max-w-container-max-width mx-auto px-gutter">
+<div class="text-center mb-20 reveal">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-4 font-geist">Professional Expertise</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">
+                    General Roblox scripting with the most experience in combat systems, focused on logic, optimization, architecture, and responsive gameplay.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-100 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">code</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">General Roblox Scripting</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Gameplay systems, UI logic, data handling, tools, integrations, and feature work across Roblox projects.
+                    </p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-200 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">security</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">Server-Side Verification</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Exploit-resistant gameplay checks and server-authoritative validation for combat, progression, and player actions.
+                    </p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-300 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">storage</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">Scalable Architecture</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Modular systems designed so games can add abilities, UI, progression, and updates without piling on technical debt.
+                    </p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-400 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">speed</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">Debugging &amp; Cleanup</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Fast diagnosis of broken scripts, runtime issues, state bugs, and performance problems in existing codebases.
+                    </p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-500 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">hub</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">Combat Design</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        State-driven melee combat, anime abilities, movement tech, blocks, dodges, parries, counters, and cinematic skills.
+                    </p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col reveal delay-600 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">sync_alt</span>
+<h3 class="font-headline-lg text-xl text-on-surface mb-4 font-geist">UI &amp; Integrations</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Interactive viewports, spellbooks, crafting flows, Discord webhook tracking, and player-facing systems.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Diverse Portfolio / Case Studies (from SCREEN_8) -->
+<section class="py-section-gap-desktop bg-surface-container-lowest/30" id="portfolio">
+<div class="max-w-container-max-width mx-auto px-gutter">
+<div class="mb-20 reveal">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-4 font-geist">Featured Case Studies</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg font-geist">A closer look at selected systems from the previous portfolio.</p>
+</div>
+<div class="space-y-24">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center reveal">
+<div class="relative rounded-3xl overflow-hidden glass-card aspect-video group cursor-pointer" data-project-id="6">
+<img alt="Advanced Combat System" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src="assets/C1.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute top-6 right-6 tech-chip">COMBAT_SYSTEM</div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-6xl">play_circle</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-geist">Advanced Combat System</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">A responsive combat system featuring air combat, blocks, dodges, parries, deflects, and jump-based counters designed for fluid player expression.</p>
+<div class="flex gap-3 flex-wrap">
+<span class="tech-chip">Luau</span>
+<span class="tech-chip">State Machines</span>
+<span class="tech-chip">Player Mechanics</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center reveal">
+<div class="order-2 lg:order-1">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4 font-geist">Obby With Checkpoints</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">An obstacle course featuring a Datastore-backed checkpoint system, allowing players to save progress and resume seamlessly.</p>
+<div class="flex gap-3 flex-wrap">
+<span class="tech-chip">Data Persistence</span>
+<span class="tech-chip">Player Progression</span>
+<span class="tech-chip">Gameplay Systems</span>
+</div>
+</div>
+<div class="relative rounded-3xl overflow-hidden glass-card aspect-video group order-1 lg:order-2 cursor-pointer" data-project-id="14">
+<img alt="Obby with Checkpoints" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://m.media-amazon.com/images/I/A1NKcp9T9XL.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute top-6 left-6 tech-chip">DATA_PERSISTENCE</div>
+<div class="absolute inset-0 flex items-center justify-center play-overlay opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-6xl">play_circle</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+<div class="glass-card p-8 rounded-2xl group cursor-pointer" data-project-id="10">
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-3 font-geist">Potion Crafting System</h4>
+<p class="text-sm text-on-surface-variant mb-4">A gameplay loop where players collect ingredients and combine them in a cauldron to craft potions.</p>
+<span class="tech-chip">Crafting Mechanics</span>
+</div>
+<div class="glass-card p-8 rounded-2xl group cursor-pointer" data-project-id="9">
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-3 font-geist">Character Selection Viewport</h4>
+<p class="text-sm text-on-surface-variant mb-4">A character selection system with a rotating model viewport and interactive preview flow.</p>
+<span class="tech-chip">3D Viewport</span>
+</div>
+<div class="glass-card p-8 rounded-2xl group cursor-pointer" data-project-id="15">
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-3 font-geist">Discord Player Tracker</h4>
+<p class="text-sm text-on-surface-variant mb-4">A Discord webhook system for join/leave logging, total playtime tracking, and lightweight analytics.</p>
+<span class="tech-chip">Discord Integration</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Studios Work With Me (from SCREEN_8/10) -->
+<section class="py-section-gap-desktop bg-surface-container-lowest/30">
+<div class="max-w-container-max-width mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-8 font-geist">Why Studios &amp; Developers Work With Me</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">groups</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Rapid Integration</h4>
+<p class="text-xs text-on-surface-variant mt-1">Can jump into existing Roblox projects and start fixing or building quickly.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">forum</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Clear Communication</h4>
+<p class="text-xs text-on-surface-variant mt-1">Direct, professional, and transparent project updates.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">verified</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Reliable Delivery</h4>
+<p class="text-xs text-on-surface-variant mt-1">Focused on scripts that work, scale, and remain maintainable.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">auto_fix_high</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Strong Debugging</h4>
+<p class="text-xs text-on-surface-variant mt-1">Exceptional at resolving complex runtime issues.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Clean Architecture</h4>
+<p class="text-xs text-on-surface-variant mt-1">Modular code built for future abilities, systems, and updates.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary">speed</span>
+<div>
+<h4 class="text-on-surface font-bold text-sm font-geist">Performance Focused</h4>
+<p class="text-xs text-on-surface-variant mt-1">Optimizing gameplay feel, networking, and runtime behavior.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Best Fit Projects (from SCREEN_8/10) -->
+<div class="glass-card p-12 rounded-3xl reveal delay-200">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-8 font-geist">Best Fit Projects</h3>
+<div class="space-y-8">
+<div>
+<h4 class="text-primary font-label-sm text-label-sm uppercase tracking-widest mb-4 font-geist">Good Fit</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Almost any Roblox coding or scripting task
+                                </li>
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Combat systems, anime abilities, and gameplay features
+                                </li>
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Existing project support, cleanup, and full-game builds
+                                </li>
+</ul>
+</div>
+<div class="pt-8 border-t border-outline-variant/30">
+<h4 class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest mb-4 font-geist">Not My Focus</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="text-error">✗</span> Gun-focused systems
+                                </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="text-error">✗</span> Vehicle-heavy systems
+                                </li>
+</ul>
+</div>
+<div class="pt-8 border-t border-outline-variant/30">
+<h4 class="text-primary font-label-sm text-label-sm uppercase tracking-widest mb-4 font-geist">Project Terms</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Payment is usually after completion
+                                </li>
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Upfronts may be requested depending on scope
+                                </li>
+<li class="flex items-center gap-3 text-on-surface text-sm">
+<span class="text-green-400">✓</span> Full-game builds require upfront for safety
+                                </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA & Payment (from SCREEN_12) -->
+<section class="py-section-gap-desktop relative overflow-hidden" id="contact">
+<div class="max-w-container-max-width mx-auto px-gutter relative z-10 text-center">
+<div class="glass-card py-20 px-gutter rounded-[2rem] max-w-4xl mx-auto border-primary/40 shadow-2xl overflow-hidden relative group">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+<div class="absolute inset-0 atomic-gradient mix-blend-overlay"></div>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-6 font-geist">Need A Roblox Scripting Specialist?</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg mb-8 max-w-xl mx-auto leading-relaxed font-geist">
+                        Currently accepting commissions, bug fixes, systems, and full-game work. Payment is usually after completion, but I may request upfront depending on scope. Full-game builds require upfront for safety and to confirm the project is serious.
+                    </p>
+<div class="inline-flex flex-col items-center gap-4 mb-12 p-6 rounded-2xl bg-surface-container-highest/50 border border-primary/20 backdrop-blur-md">
+<span class="text-on-surface-variant font-label-sm text-xs uppercase tracking-widest font-geist mb-2">Accepted Payment Methods</span>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+<span class="text-on-surface font-semibold font-geist">Bank Transfer</span>
+</div>
+<div class="w-px h-4 bg-outline-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+<span class="text-on-surface font-semibold font-geist">Robux (Tax Paid)</span>
+</div>
+</div>
+</div>
+<div class="flex justify-center">
+<button class="atomic-gradient text-white px-8 py-3 rounded-xl font-label-sm text-xs uppercase tracking-[0.16em] font-bold hover:shadow-[0_0_35px_rgba(139,92,246,0.6)] transition-all font-geist inline-flex items-center gap-2 justify-center group/btn" data-copy-discord type="button">
+<span>Copy Discord: waxes97</span>
+<span class="material-symbols-outlined text-[18px] group-hover/btn:translate-x-1 transition-transform">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed top-28 left-1/2 -translate-x-1/2 z-[120] opacity-0 -translate-y-6 pointer-events-none transition-all duration-300" id="toast" role="status">
+<div class="bg-green-600 text-white px-6 py-3 rounded-full shadow-[0_0_30px_rgba(22,163,74,0.4)] flex items-center gap-3 border border-white/20 font-geist font-bold text-sm">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Discord username copied: waxes97</span>
+</div>
+</div>
+<div aria-hidden="true" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-10" id="media-modal">
+<button aria-label="Close media preview" class="absolute inset-0 bg-black/90 backdrop-blur-xl" id="media-backdrop" type="button"></button>
+<div class="relative w-full max-w-5xl bg-surface-container-low rounded-3xl overflow-hidden border border-primary/20 shadow-[0_0_50px_rgba(139,92,246,0.25)]">
+<button aria-label="Close media preview" class="absolute top-4 right-4 z-10 w-10 h-10 p-0 bg-black/50 hover:bg-primary/30 rounded-full text-white transition-colors flex items-center justify-center" id="media-close" type="button">
+<span class="material-symbols-outlined text-[24px] leading-none">close</span>
+</button>
+<div class="aspect-video bg-black" id="media-frame"></div>
+<div class="p-6 md:p-8 bg-gradient-to-t from-background to-surface-container-low">
+<h3 class="font-headline-lg text-2xl text-on-surface mb-2 font-geist" id="media-title"></h3>
+<p class="text-on-surface-variant leading-relaxed" id="media-description"></p>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-16 border-t border-primary/10 bg-surface-container-lowest">
+<div class="max-w-container-max-width mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<span class="font-headline-lg text-2xl text-on-surface font-extrabold tracking-tighter font-geist">WAXES</span>
+<p class="font-body-md text-sm text-on-surface-variant mt-2">© <span data-current-year>2026</span> Waxes. Clean Roblox scripting and production-ready systems.</p>
+</div>
+<div class="flex gap-12 font-geist text-sm uppercase tracking-widest font-semibold">
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" data-copy-discord href="#">
+<span class="material-symbols-outlined text-sm">forum</span> Discord
+            </a>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="https://www.youtube.com/@waxes97" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">smart_display</span> YouTube
+            </a>
+<a class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="https://www.tiktok.com/@waxes97" rel="noopener" target="_blank">
+<span class="material-symbols-outlined text-sm">smart_display</span> TikTok
+            </a>
+</div>
+</div>
+</footer>
+<script>
+    // WebGL Energy Shader Logic (ANIMATION_3)
+    (function() {
+        const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+        function syncSize() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            if (canvas.width !== w || canvas.height !== h) {
+                canvas.width = w;
+                canvas.height = h;
+            }
+        }
+        window.addEventListener('resize', syncSize);
+        syncSize();
+
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) return;
+        const vs = `attribute vec2 a_position;
+        varying vec2 v_texCoord;
+        void main() {
+          v_texCoord = a_position * 0.5 + 0.5;
+          gl_Position = vec4(a_position, 0.0, 1.0);
+        }`;
+        const fs = `precision highp float;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+        varying vec2 v_texCoord;
+
+        float noise(vec2 p) {
+            return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+
+        void main() {
+            vec2 uv = v_texCoord;
+            float t = u_time * 0.2;
+            float wave = sin(uv.x * 3.0 + t) * cos(uv.y * 2.0 - t);
+            float wave2 = sin(uv.y * 4.0 - t * 1.2) * 0.5;
+            vec3 color1 = vec3(0.02, 0.01, 0.04); 
+            vec3 color2 = vec3(0.54, 0.36, 0.96); 
+            float energy = smoothstep(0.4, 0.6, 0.5 + (wave + wave2) * 0.5);
+            vec3 finalColor = mix(color1, color2, energy * 0.08);
+            gl_FragColor = vec4(finalColor, 1.0);
+        }`;
+        function cs(type, src) {
+            const s = gl.createShader(type);
+            gl.shaderSource(s, src);
+            gl.compileShader(s);
+            return s;
+        }
+        const prog = gl.createProgram();
+        gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+        gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+        gl.linkProgram(prog);
+        gl.useProgram(prog);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+        const pos = gl.getAttribLocation(prog, 'a_position');
+        gl.enableVertexAttribArray(pos);
+        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+        const uTime = gl.getUniformLocation(prog, 'u_time');
+        const uRes = gl.getUniformLocation(prog, 'u_resolution');
+        function render(t) {
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            if (uTime) gl.uniform1f(uTime, t * 0.001);
+            if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+            requestAnimationFrame(render);
+        }
+        render(0);
+    })();
+
+    const discordUsername = 'waxes97';
+    const projects = [
+        {
+            id: 1,
+            title: "Ryomen Sukuna (Meguna) Moveset",
+            type: "video",
+            mediaUrl: "assets/Sukuna.mp4",
+            thumbnail: "https://i.redd.it/meguna-fuuga-purple-style-by-and-line-art-by-v0-62e1cwyc50xc1.jpg?width=680&format=pjpg&auto=webp&s=a5d89524f8435ef02a782afd938cabf07ee7844b",
+            description: "Server-authoritative Meguna combat moveset combining Shrine and Ten Shadows techniques with optimized, state-driven abilities.",
+            tags: ["Recent", "Server-Authoritative Combat", "Optimization"]
+        },
+        {
+            id: 2,
+            title: "Gojo Satoru's Black Flash + Unlimited Hollow",
+            type: "video",
+            mediaUrl: "assets/GojoNuke.mp4",
+            thumbnail: "https://i.ytimg.com/vi/nqFYoblWnY8/maxresdefault.jpg",
+            description: "A cinematic combo ability combining Gojo's Black Flash with Unlimited Hollow, featuring large-scale destruction and performance-optimized visual effects.",
+            tags: ["Recent", "Visual Effects", "Ability Design", "Optimization"]
+        },
+        {
+            id: 3,
+            title: "Gojo Satoru's Domain Expansion",
+            type: "video",
+            mediaUrl: "assets/GojoDomain.mp4",
+            thumbnail: "https://static.wikia.nocookie.net/jujutsu-kaisen/images/6/66/Gojo_reveals_his_Six_Eyes_%28Anime%29.png/revision/latest?cb=20201114064149",
+            description: "Gojo's Unlimited Void domain expansion with a short cinematic intro inspired by his confrontation with Jogo, emphasizing atmosphere, timing, and visual clarity.",
+            tags: ["Recent", "Cinematics", "Visual Effects", "Ability Design"]
+        },
+        {
+            id: 4,
+            title: "Gojo Satoru's RCT Awakening",
+            type: "video",
+            mediaUrl: "assets/GojoModeAnimation.mp4",
+            thumbnail: "https://i.ytimg.com/vi/7i9ZrSwWMI8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCaF6E11MH5x8oA9zQtlQ9mZtkAsw",
+            description: "An awakening mode animation depicting Gojo activating Reverse Cursed Technique after a Toji-inspired flashback, blending cinematic storytelling with smooth character transitions.",
+            tags: ["Recent", "Animation", "Cinematics", "Character Design"]
+        },
+        {
+            id: 5,
+            title: "Gojo Satoru (Shinjuku) Moveset",
+            type: "video",
+            mediaUrl: "assets/GojoBase.mp4",
+            thumbnail: "https://i.ytimg.com/vi/6mVM36RTwd4/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGEEgVShyMA8=&rs=AOn4CLDZlzfEoecWJiZCQ2rvZppVSsROHg",
+            description: "Server-authoritative Gojo combat moveset focused on fluid hand-to-hand combat, precise timing, and clean ability chaining.",
+            tags: ["Recent", "Combat Design", "Optimization", "Server-Authoritative Combat"]
+        },
+        {
+            id: 6,
+            title: "Advanced Combat System",
+            type: "video",
+            mediaUrl: "assets/CombatSystem.mp4",
+            thumbnail: "assets/C1.png",
+            description: "A responsive combat system featuring air combat, blocks, dodges, parries, deflects, and jump-based counters designed for fluid player expression.",
+            tags: ["Recent", "Combat Systems", "State Machines", "Player Mechanics"]
+        },
+        {
+            id: 7,
+            title: "Sung Jinwoo's Shadows & Personal Moveset",
+            type: "video",
+            mediaUrl: "assets/SungJinwoo.mp4",
+            thumbnail: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/05/featured-image-jinwoo-sung.jpg?w=1200&h=628&fit=crop",
+            description: "Gameplay showcase of Sung Jinwoo's personal and Shadow Army abilities, including unique dashes, speed bursts, Shadow extraction, and coordinated shadow attacks.",
+            tags: ["Somewhat Old", "Combat Systems", "Player Mechanics", "Ability Design"]
+        },
+        {
+            id: 8,
+            title: "Saber's Avalon Healing",
+            type: "video",
+            mediaUrl: "assets/SaberHeal.mp4",
+            thumbnail: "https://i.redd.it/d05de0e8av741.jpg",
+            description: "Gameplay showcase of Saber's Avalon healing ability.",
+            tags: ["Somewhat Old", "Combat Systems", "Ability Design", "Player Mechanics"]
+        },
+        {
+            id: 9,
+            title: "Character Selection Viewport",
+            type: "video",
+            mediaUrl: "assets/CharacterViewport.mp4",
+            thumbnail: "assets/C2.png",
+            description: "A character selection system featuring a viewport that displays the character model with smooth rotation and interactive previews.",
+            tags: ["Old", "UI Systems", "Player Interaction", "3D Viewport"]
+        },
+        {
+            id: 10,
+            title: "Potion Crafting System",
+            type: "video",
+            mediaUrl: "assets/PotionMaking.mp4",
+            thumbnail: "https://blenderartists.org/uploads/default/original/4X/8/9/d/89dc1c7c0867ac8b4a92a7d120e393c94ebfac05.jpeg",
+            description: "A gameplay system where players collect ingredients and combine them in a cauldron to craft potions.",
+            tags: ["Old", "Gameplay Systems", "Crafting Mechanics", "Player Interaction"]
+        },
+        {
+            id: 11,
+            title: "Revealing Spell",
+            type: "video",
+            mediaUrl: "assets/LikeObser.mp4",
+            thumbnail: "https://i.pinimg.com/236x/e5/36/8d/e5368d232e993b5aa72db421d9f174f2.jpg",
+            description: "A spell that reveals all players' locations along with their health and magic, designed for strategic awareness in gameplay.",
+            tags: ["Old", "Gameplay Mechanics", "Player Awareness", "Ability Design"]
+        },
+        {
+            id: 12,
+            title: "Spellbook System",
+            type: "video",
+            mediaUrl: "assets/Book.mp4",
+            thumbnail: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f18b042-2536-4346-8499-c6e9199311f9/ddve63m-96635701-77a2-4e05-9b0c-2d7e2ac28d83.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8xZjE4YjA0Mi0yNTM2LTQzNDYtODQ5OS1jNmU5MTk5MzExZjkvZGR2ZTYzbS05NjYzNTcwMS03N2EyLTRlMDUtOWIwYy0yZDdlMmFjMjhkODMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.pQKGBxHuYMm0DWny7uVt_H5XqMyHL7aGIgYBUa4R9m4",
+            description: "A fully scripted spellbook showing available spells, who can use them, and dynamically scaled stats, optimized for smooth gameplay and scalability.",
+            tags: ["Old", "Gameplay Systems", "UI Systems", "Ability Management"]
+        },
+        {
+            id: 13,
+            title: "Random Transformation & Flight",
+            type: "video",
+            mediaUrl: "assets/Transform.mp4",
+            thumbnail: "https://thumbs.dreamstime.com/b/beautiful-young-angel-girl-heavy-gold-plate-armor-red-fabrics-walks-clouds-sky-huge-mace-her-hands-214908484.jpg",
+            description: "A transformation ability that grants flight, enabling aerial movement and maneuvering across the environment.",
+            tags: ["Old", "Gameplay Mechanics", "Ability Design", "Movement Systems"]
+        },
+        {
+            id: 14,
+            title: "Obby with Checkpoints",
+            type: "video",
+            mediaUrl: "assets/Obby.mp4",
+            thumbnail: "https://m.media-amazon.com/images/I/A1NKcp9T9XL.png",
+            description: "An obstacle course featuring a Datastore-backed checkpoint system, allowing players to save progress and resume seamlessly.",
+            tags: ["Very Old", "Gameplay Systems", "Data Persistence", "Player Progression"]
+        },
+        {
+            id: 15,
+            title: "Discord Player Tracker",
+            type: "image",
+            mediaUrl: "assets/Webhook.png",
+            thumbnail: "https://i.ytimg.com/vi/d2mjIQCxvuM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCfept5KMt64xlPhB62bX3w-tA27g",
+            description: "A Discord webhook system that logs when players join and leave, along with total playtime, for real-time monitoring and analytics.",
+            tags: ["Old", "Backend Systems", "Player Analytics", "Discord Integration"]
+        }
+    ];
+
+    const projectsById = new Map(projects.map(project => [String(project.id), project]));
+    const escapeHtml = (value) => String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    }[char]));
+
+    function renderProjectGrid() {
+        const grid = document.getElementById('showcase-grid');
+        if (!grid) return;
+
+        grid.innerHTML = projects.map((project, index) => {
+            const delay = ['delay-100', 'delay-200', 'delay-300'][index % 3];
+            const icon = project.type === 'video' ? 'play_circle' : 'image';
+            const tags = project.tags.slice(0, 3).map(tag => `<span class="tech-chip">${escapeHtml(tag)}</span>`).join('');
+
+            return `
+                <article class="reveal ${delay} group cursor-pointer" data-project-id="${project.id}" tabindex="0" role="button" aria-label="Open ${escapeHtml(project.title)}">
+                    <div class="relative aspect-video rounded-2xl overflow-hidden glass-card mb-6">
+                        <img alt="${escapeHtml(project.title)}" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" src="${escapeHtml(project.thumbnail)}" loading="lazy"/>
+                        <div class="absolute inset-0 flex items-center justify-center play-overlay">
+                            <span class="material-symbols-outlined text-white text-6xl opacity-90 group-hover:scale-110 transition-transform">${icon}</span>
+                        </div>
+                        <div class="absolute top-4 left-4 tech-chip">${escapeHtml(project.type)}</div>
+                    </div>
+                    <h3 class="font-headline-lg text-xl text-on-surface font-geist px-2">${escapeHtml(project.title)}</h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed px-2 mt-3 project-description">${escapeHtml(project.description)}</p>
+                    <div class="flex gap-2 flex-wrap px-2 mt-4">${tags}</div>
+                </article>
+            `;
+        }).join('');
+    }
+
+    function showToast() {
+        const toast = document.getElementById('toast');
+        if (!toast) return;
+        window.clearTimeout(showToast.timeoutId);
+        toast.classList.remove('opacity-0', '-translate-y-6', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        showToast.timeoutId = window.setTimeout(() => {
+            toast.classList.add('opacity-0', '-translate-y-6', 'pointer-events-none');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2500);
+    }
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        textarea.remove();
+        showToast();
+    }
+
+    function copyDiscord() {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(discordUsername).then(showToast).catch(() => fallbackCopy(discordUsername));
+            return;
+        }
+
+        fallbackCopy(discordUsername);
+    }
+
+    function openMedia(project) {
+        const modal = document.getElementById('media-modal');
+        const frame = document.getElementById('media-frame');
+        const title = document.getElementById('media-title');
+        const description = document.getElementById('media-description');
+        if (!modal || !frame || !title || !description) return;
+
+        frame.textContent = '';
+        const media = document.createElement(project.type === 'video' ? 'video' : 'img');
+        media.src = project.mediaUrl;
+        media.className = 'w-full h-full object-contain';
+
+        if (project.type === 'video') {
+            media.controls = true;
+            media.autoplay = true;
+            media.playsInline = true;
+            media.muted = true;
+            media.defaultMuted = true;
+            media.volume = 0;
+            media.addEventListener('volumechange', () => {
+                media.muted = true;
+                media.volume = 0;
+            });
+        } else {
+            media.alt = project.title;
+        }
+
+        frame.appendChild(media);
+        title.textContent = project.title;
+        description.textContent = project.description;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+    }
+
+    function closeMedia() {
+        const modal = document.getElementById('media-modal');
+        const frame = document.getElementById('media-frame');
+        if (!modal || !frame) return;
+
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden', 'true');
+        frame.textContent = '';
+        document.body.classList.remove('modal-open');
+    }
+
+    renderProjectGrid();
+
+    document.querySelectorAll('[data-current-year]').forEach(el => {
+        el.textContent = new Date().getFullYear();
+    });
+
+    document.getElementById('media-close')?.addEventListener('click', closeMedia);
+    document.getElementById('media-backdrop')?.addEventListener('click', closeMedia);
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMedia();
+        if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('[data-project-id]')) {
+            event.preventDefault();
+            const project = projectsById.get(event.target.dataset.projectId);
+            if (project) openMedia(project);
+        }
+    });
+
+    document.addEventListener('click', event => {
+        const copyButton = event.target.closest('[data-copy-discord]');
+        if (copyButton) {
+            event.preventDefault();
+            copyDiscord();
+            return;
+        }
+
+        const scrollButton = event.target.closest('[data-scroll-target]');
+        if (scrollButton) {
+            const target = document.getElementById(scrollButton.dataset.scrollTarget);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
+        const externalButton = event.target.closest('[data-external-url]');
+        if (externalButton) {
+            window.open(externalButton.dataset.externalUrl, '_blank', 'noopener,noreferrer');
+            return;
+        }
+
+        const projectCard = event.target.closest('[data-project-id]');
+        if (projectCard) {
+            const project = projectsById.get(projectCard.dataset.projectId);
+            if (project) openMedia(project);
+        }
+    });
+
+    // Intersection Observer for Scroll Reveals
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(revealCallback, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    const navLinks = Array.from(document.querySelectorAll('[data-nav-link]'));
+    const navSections = navLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+    function updateActiveNav() {
+        if (!navLinks.length || !navSections.length) return;
+
+        let activeId = navSections[0].id;
+        const activationPoint = window.innerHeight * 0.35;
+
+        navSections.forEach(section => {
+            if (section.getBoundingClientRect().top <= activationPoint) {
+                activeId = section.id;
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
+        });
+    }
+
+    updateActiveNav();
+
+    // Sticky Nav logic
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav div');
+        if (window.scrollY > 50) {
+            nav.classList.add('py-2');
+            nav.classList.add('bg-surface/90');
+            nav.classList.add('shadow-2xl');
+        } else {
+            nav.classList.remove('py-2');
+            nav.classList.remove('bg-surface/90');
+            nav.classList.remove('shadow-2xl');
+        }
+
+        updateActiveNav();
+    });
+</script>
+</body></html>
