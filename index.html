@@ -992,7 +992,7 @@
 
         grid.innerHTML = projects.map((project, index) => {
             const delay = ['delay-100', 'delay-200', 'delay-300'][index % 3];
-            const icon = project.type === 'video' ? 'play_circle' : 'image';
+            const icon = 'play_circle';
             const tags = project.tags.slice(0, 3).map(tag => `<span class="tech-chip">${escapeHtml(tag)}</span>`).join('');
 
             return `
